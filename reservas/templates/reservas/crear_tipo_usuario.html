@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Tipo de Usuario</title>
+</head>
+<body>
+    <h1>Crear Tipo de Usuario</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Muestra el formulario -->
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'listar_tipos_usuario' %}">Volver a la lista de tipos de usuario</a>  <!-- Cambia esto al nombre de la URL correspondiente -->
+</body>
+</html>

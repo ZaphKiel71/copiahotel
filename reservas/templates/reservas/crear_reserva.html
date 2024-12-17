@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Inicia el formulario dentro de un contenedor centrado -->
+<div class="container my-5">
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Selección del Pasajero -->
+        <div class="mb-3">
+            <label for="pasajero" class="form-label">Pasajero</label>
+            <select name="pasajero" id="pasajero" class="form-select" aria-label="Selecciona un pasajero">
+                <option value="" selected disabled>Seleccione un pasajero</option>
+                {% for pasajero in pasajeros %}
+                    <option value="{{ pasajero.id_pasajero }}">
+                        {{ pasajero.nombre }} {{ pasajero.apellido_paterno }} {{ pasajero.apellido_materno }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Selección de la Habitación -->
+        <div class="mb-3">
+            <label for="habitacion" class="form-label">Habitación</label>
+            <select name="habitacion" id="habitacion" class="form-select" aria-label="Selecciona una habitación">
+                <option value="" selected disabled>Seleccione una habitación</option>
+                {% for habitacion in habitaciones %}
+                    <option value="{{ habitacion.n_habitacion }}">Habitación {{ habitacion.n_habitacion }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Fecha de Reserva -->
+        <div class="mb-3">
+            <label for="fecha_reserva" class="form-label">Fecha de Reserva</label>
+            <input type="date" name="fecha_reserva" id="fecha_reserva" class="form-control" required aria-label="Elige la fecha de reserva">
+        </div>
+        
+        <!-- Cantidad de Días -->
+        <div class="mb-3">
+            <label for="cantidad_dias" class="form-label">Cantidad de Días</label>
+            <input type="number" name="cantidad_dias" id="cantidad_dias" class="form-control" required min="1" aria-label="Indica la cantidad de días">
+        </div>
+        
+        <!-- Usuario -->
+        <div class="mb-3">
+            <label for="usuario" class="form-label">Usuario</label>
+            <select name="usuario" id="usuario" class="form-select" aria-label="Selecciona un usuario">
+                <option value="" selected disabled>Seleccione un usuario</option>
+                {% for usuario in usuarios %}
+                    <option value="{{ usuario.id_usuario }}">{{ usuario.nombre_usuario }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Estado de Reserva -->
+        <div class="mb-3">
+            <label for="estado_reserva" class="form-label">Estado de Reserva</label>
+            <input type="text" name="estado_reserva" id="estado_reserva" class="form-control" value="Reservado" readonly aria-label="Estado actual de la reserva">
+        </div>
+        
+        <!-- Cantidad de Personas -->
+        <div class="mb-3">
+            <label for="cantidad_persona" class="form-label">Cantidad de Personas</label>
+            <input type="number" name="cantidad_persona" id="cantidad_persona" class="form-control" required min="1" aria-label="Indica la cantidad de personas">
+        </div>
+        
+        <!-- Nombre de la Empresa -->
+        <div class="mb-3">
+            <label for="nombre_empresa" class="form-label">Nombre de la Empresa (opcional)</label>
+            <input type="text" name="nombre_empresa" id="nombre_empresa" class="form-control" placeholder="Si aplica, ingresa el nombre de la empresa" aria-label="Nombre de la empresa (opcional)">
+        </div>
+
+        <!-- Botón de Envío -->
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success btn-lg">Crear Reserva</button>
+        </div>
+    </form>
+</div>
+
+<!-- Agregar algunos efectos interactivos con JavaScript -->
+<script>
+    // Función para cambiar el color de los campos cuando están llenos
+    document.querySelectorAll('input, select').forEach((input) => {
+        input.addEventListener('focus', () => {
+            input.classList.add('border-primary');
+        });
+        input.addEventListener('blur', () => {
+            input.classList.remove('border-primary');
+        });
+    });
+    
+    // Validación en tiempo real (solo para inputs numéricos)
+    document.querySelectorAll('input[type="number"]').forEach((input) => {
+        input.addEventListener('input', function() {
+            if (this.value < 1) {
+                this.setCustomValidity('El valor debe ser mayor o igual a 1.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    });
+</script>
+{% endblock %}

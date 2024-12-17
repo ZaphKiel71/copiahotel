@@ -1,0 +1,262 @@
+      /* Global Styles */
+      body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    .navbar {
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand img {
+        height: 70px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navbar-brand img:hover {
+        transform: scale(1.1);
+    }
+
+    .hero {
+         position: relative;
+        height: 100vh;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hotel-hero.jpg') no-repeat -50% center/cover;
+        display: flex;
+        align-items: center;
+         justify-content: center;
+         text-align: center;
+         color: white;
+    }
+
+
+    .hero h1 {
+        font-size: 4.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 1rem;
+        animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero p {
+        font-size: 1.5rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .hero .btn {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
+        background: linear-gradient(90deg, #ff8c00, #f4c542);
+        border: none;
+        border-radius: 50px;
+        color: white;
+        text-transform: uppercase;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero .btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+    }
+
+/* Search Bar */
+.search-bar {
+position: relative;
+background: white;
+border-radius: 15px;
+box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+padding: 1.5rem;
+width: 100%;
+z-index: 10;
+margin-top: -170px; /* Ajusta esta distancia para que quede un poco sobre el contenido */
+}
+
+.search-bar form {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+gap: 1rem;
+}
+
+.search-bar input,
+.search-bar select {
+border: 1px solid #ccc;
+border-radius: 5px;
+padding: 0.8rem;
+font-size: 1rem;
+flex: 1; /* Asegura que los campos ocupen el mismo espacio */
+}
+
+.search-bar .col-md-3 {
+flex: 0 0 20%; /* Hace que cada columna ocupe un 23% del espacio para ajustarse mejor */
+}
+
+.search-bar button {
+background: linear-gradient(90deg, #ff8c00, #f4c542);
+color: white;
+border: none;
+padding: 0.8rem 2rem;
+border-radius: 5px;
+transition: background-color 0.3s ease;
+font-size: 1rem;
+}
+
+.search-bar button:hover {
+background: linear-gradient(90deg, #f4c542, #ff8c00);
+}
+
+/* Ajuste específico para dispositivos pequeños */
+@media (max-width: 768px) {
+.search-bar form {
+    flex-direction: column;
+}
+
+.search-bar .col-md-3 {
+    flex: 1 1 100%; /* En pantallas pequeñas, los campos ocupan toda la línea */
+    margin-bottom: 1rem;
+}
+
+.search-bar button {
+    width: 100%; /* Asegura que el botón ocupe todo el ancho disponible */
+}
+}
+
+/* Animations */
+@keyframes slideUp {
+from {
+    transform: translateY(50px);
+    opacity: 0;
+}
+to {
+    transform: translateY(0);
+    opacity: 1;
+}
+}
+
+
+/* Animations */
+@keyframes slideUp {
+from {
+    transform: translateY(50px);
+    opacity: 0;
+}
+to {
+    transform: translateY(0);
+    opacity: 1;
+}
+}
+
+
+/* Animations */
+@keyframes slideUp {
+from {
+    transform: translateY(50px);
+    opacity: 0;
+}
+to {
+    transform: translateY(0);
+    opacity: 1;
+}
+}
+
+    /* Features Section */
+    .features {
+        padding: 5rem 2rem;
+        text-align: center;
+    }
+
+    .features h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+
+    .feature-item {
+        margin-bottom: 2rem;
+    }
+
+    .feature-item i {
+        font-size: 3rem;
+        color: #f4c542;
+        margin-bottom: 1rem;
+    }
+
+    .feature-item h4 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    .footer {
+  background-color:  hsl(39, 47%, 27%);;
+  padding: 40px 0;
+}
+.footer-title {
+  font-weight: bold;
+  color: #ffffff;
+}
+.footer p {
+  font-size: 0.9rem;
+}
+.footer a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.footer a:hover {
+  color: #a0844f;
+}
+    /* Animations */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 3rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .search-bar {
+            width: 90%;
+        }
+    }

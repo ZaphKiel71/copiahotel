@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Amaru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles/paginaprincipal.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static './imagen1.png' %}" alt="Hotel Amaru Exterior">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Habitaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Reservas</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary" href="{% url 'login' %}">Iniciar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    
+    <section class="hero">
+        <div class="container d-flex align-items-center">
+            <div class="hero-text">
+                <h1>Hotel Amaru</h1>
+                <p>Cada momento se siente como la primera vez.</p>
+                <a href="{% url 'listar_reservas' %}" class="btn btn-primary">Ir a Reservas</a>
+            </div>
+            <img src="{% static './hotel.jpg' %}" alt="Hotel Amaru Exterior">
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="py-5">
+        <div class="container">
+          <div class="search-bar">
+            <div class="row justify-content-center">
+              <div class="col-md-2">
+                <label for="room-type" class="form-label">Tipo de Habitación</label>
+                <select id="room-type" class="form-select">
+                  <option value="standard">Single</option>
+                  <option value="deluxe">Dobles</option>
+                  <option value="suite">Triples</option>
+                  <option value="suite">Cuadrupes</option>
+                  <option value="suite">Matrimoniales</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="guests" class="form-label">Personas</label>
+                <select id="guests" class="form-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="4">5</option>
+                  <option value="4">6</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="check-in" class="form-label">Fecha de Llegada</label>
+                <input type="date" id="check-in" class="form-control">
+              </div>
+              <div class="col-md-2">
+                <label for="check-out" class="form-label">Fecha de Salida</label>
+                <input type="date" id="check-out" class="form-control">
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button class="btn-reserve w-100">Reservar ahora</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Nuestros Servicios</h2>
+        <div class="row">
+            <div class="col-md-4 feature-item">
+                <i class="fas fa-swimming-pool"></i>
+                <h4>Estacionamiento</h4>
+                <p>Estaciona con comodidad, disfruta con estilo.</p>
+            </div>
+            <div class="col-md-4 feature-item">
+                <i class="fas fa-spa"></i>
+                <h4>Servicio de mucamas</h4>
+                <p>"Cuidamos cada detalle, para que tú solo disfrutes."</p>
+            </div>
+            <div class="col-md-4 feature-item">
+                <i class="fas fa-utensils"></i>
+                <h4>Restaurante</h4>
+                <p>cada comida es una experiencia gourmet que transforma tu día.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy;
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container text-center">
+      <p>El servicio en el Hotel Amaru fue excepcional. No hubo absolutamente ningún asunto que no fuera abordado a tiempo y con resultados satisfactorios.</p>
+      <div class="row mt-4">
+        <div class="col-md-3">
+          <h5 class="footer-title">Enlaces Rápidos</h5>
+          <a href="#">Reserva de Habitación</a><br>
+          <a href="#">Alojamiento</a><br>
+          <a href="#">Contacto</a><br>
+          <a href="#">Explorar</a>
+        </div>
+        <div class="col-md-3">
+          <h5 class="footer-title">Compañía</h5>
+          <a href="#">Política de Privacidad</a><br>
+          <a href="#">Política de Reembolso</a><br>
+          <a href="#">F.A.Q</a><br>
+          <a href="#">Acerca</a>
+        </div>
+        <div class="col-md-3">
+          <h5 class="footer-title">Redes Sociales</h5>
+          <a href="#">Facebook</a><br>
+          <a href="#">Twitter</a><br>
+          <a href="#">Instagram</a><br>
+          <a href="#">LinkedIn</a>
+        </div>
+        <div class="col-md-3">
+          <h5 class="footer-title">Suscripción</h5>
+          <p>Suscríbase para recibir ofertas exclusivas:</p>
+          <input type="email" class="form-control mb-2" placeholder="Ingrese su email">
+          <button class="btn btn-dark w-100">Subscribe</button>
+        </div>
+      </div>
+    </div>

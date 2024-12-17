@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Pago{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Crear Pago</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.as_p }}  <!-- Muestra el formulario -->
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Pago</button>
+    <a href="{% url 'listar_pagos' %}" class="btn btn-secondary">Volver a la lista de pagos</a>
+</form>
+
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% endblock %}

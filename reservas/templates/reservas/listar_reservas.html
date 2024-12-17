@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Contenedor con un ancho máximo y centrado -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4 text-primary">Listado de Reservas</h2>
+    <a href="{% url 'crear_reserva' %}" class="btn btn-primary mb-3">Nueva Reserva</a>
+    
+    <!-- Contenedor de la tabla con un ancho máximo y responsive -->
+    <div class="table-responsive">
+        <table id="tabla-reservas" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Pasajero</th>
+                    <th>Habitación</th>
+                    <th>Fecha</th>
+                    <th>Días</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.nro_reserva }}</td>
+                    <td>{{ reserva.pasajero.nombre }}</td>
+                    <td>{{ reserva.habitacion.n_habitacion }}</td>
+                    <td>{{ reserva.fecha_reserva }}</td>
+                    <td>{{ reserva.cantidad_dias }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Cargar las bibliotecas de jQuery y DataTables -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
+<script>
+$(document).ready(function() {
+    // Inicializamos DataTable con opciones personalizadas
+    $('#tabla-reservas').DataTable({
+        "paging": true,           // Habilitar paginación
+        "searching": true,        // Habilitar búsqueda en tiempo real
+        "ordering": true,         // Habilitar ordenación de columnas
+        "order": [[3, 'desc']],   // Orden por defecto: fecha (columna 3) en orden descendente
+        "pageLength": 5,          // Número de filas por página
+        "lengthMenu": [           // Opciones para cambiar el número de filas por página
+            [5, 10, 15, 25, -1],
+            [5, 10, 15, 25, "Todos"]
+        ],
+        "responsive": true,       // Hacer la tabla responsive
+        "language": {
+            "sSearch": "Buscar:", // Personalizar el texto del campo de búsqueda
+            "lengthMenu": "Mostrar _MENU_ registros por página", // Personalizar texto de la paginación
+            "zeroRecords": "No se encontraron registros", // Mensaje cuando no hay resultados
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ registros", // Información sobre los registros
+            "infoEmpty": "Mostrando 0 a 0 de 0 registros", // Mensaje cuando no hay resultados
+            "infoFiltered": "(filtrado de _MAX_ registros totales)" // Filtro de resultados
+        }
+    });
+});
+</script>
+{% endblock %}
+

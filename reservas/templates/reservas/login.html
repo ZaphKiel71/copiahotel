@@ -1,0 +1,44 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión - Hotel Amaru</title>
+    <link rel="stylesheet" href="/static/styles/login.css">
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="{% static 'imagen1.png' %}" alt="Hotel Amaru Exterior">
+        </div>
+    
+        <!-- Formulario -->
+        <h2 class="text-center">Iniciar Sesión</h2>
+        <form method="post" autocomplete="off">  <!-- Deshabilitar autocompletado -->
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+            {% endif %}
+            <div class="form-group position">
+                <i class="icon">👤</i>
+                <input type="text" class="icon-input form-control" id="username" name="username" placeholder="Usuario" required>
+                {% if form.username.errors %}
+                    <div class="alert alert-danger">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group position">
+                <i class="icon">🔒</i>
+                <input type="password" class="icon-input form-control" id="password" name="password" placeholder="Contraseña" required autocomplete="new-password">  <!-- Deshabilitar autocompletado -->
+                {% if form.password.errors %}
+                    <div class="alert alert-danger">{{ form.password.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="forgot-password">
+                <a href="#">¿Has olvidado tu contraseña?</a>
+            </div>
+            <button type="submit" class="btn-login btn btn-custom">Iniciar Sesión</button>
+        </form>
+    </div>
+{% endblock %}

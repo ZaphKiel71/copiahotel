@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Crear Habitación</h2>
+<form method="POST" action="">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="tipo_habitacion" class="form-label">Tipo de Habitación</label>
+        <select class="form-select" id="tipo_habitacion" name="tipo_habitacion">
+            {% for tipo in tipos_habitacion %}
+            <option value="{{ tipo.id_tipo_habitacion }}">{{ tipo.nombre_tipo_hab }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="estado_habitacion" class="form-label">Estado</label>
+        <input type="text" class="form-control" id="estado_habitacion" name="estado_habitacion" required>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}

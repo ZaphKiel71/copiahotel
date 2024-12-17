@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center mb-4">Listado de Pasajeros</h2>
+
+<!-- Formulario de búsqueda con un ancho adecuado -->
+<div class="mb-3 d-flex justify-content-center">
+    <form method="GET" action="{% url 'listar_pasajeros' %}" class="w-50">
+        <div class="input-group">
+            <input type="text" class="form-control" name="rut" placeholder="Buscar por RUT" value="{{ request.GET.rut }}">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i> Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Botón para agregar pasajero -->
+<div class="text-right mb-3">
+    <a href="{% url 'crear_pasajero' %}" class="btn btn-primary btn-lg">
+        <i class="fas fa-user-plus"></i> Agregar Pasajero
+    </a>
+</div>
+
+<!-- Tabla de pasajeros -->
+<div class="table-responsive">
+    <table class="table table-hover table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Rut</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Correo</th>
+                <th>Nacionalidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pasajero in pasajeros %}
+            <tr>
+                <td>{{ pasajero.id_pasajero }}</td>
+                <td>{{ pasajero.rut }}</td>
+                <td>{{ pasajero.nombre }}</td>
+                <td>{{ pasajero.apellido_paterno }}</td>
+                <td>{{ pasajero.apellido_materno }}</td>
+                <td>{{ pasajero.correo }}</td>
+                <td>{{ pasajero.codigo_naci.descripcion }}</td>
+                <td>
+                    <!-- Botones de acción -->
+                    <a href="{% url 'editar_pasajero' pasajero.id_pasajero %}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+                    <a href="{% url 'eliminar_pasajero' pasajero.id_pasajero %}" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{ pasajero.id_pasajero }}">
+                        <i class="fas fa-trash-alt"></i> Eliminar
+                    </a>
+                </td>
+            </tr>
+
+            <!-- Modal de confirmación de eliminación -->
+            <div class="modal fade" id="eliminarModal{{ pasajero.id_pasajero }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel{{ pasajero.id_pasajero }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eliminarModalLabel{{ pasajero.id_pasajero }}">Confirmación de eliminación</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ¿Estás seguro de que deseas eliminar al pasajero {{ pasajero.nombre }} {{ pasajero.apellido_paterno }}?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <a href="{% url 'eliminar_pasajero' pasajero.id_pasajero %}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

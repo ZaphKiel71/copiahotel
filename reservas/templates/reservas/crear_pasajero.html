@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Crear Pasajero</h2>
+<div class="container">
+    <form method="POST" action="" id="formPasajero" class="p-4 border rounded shadow-sm" style="max-width: 600px; margin: 0 auto;">
+        {% csrf_token %}
+        
+        <div class="mb-3 position-relative">
+            <label for="nombre" class="form-label">Nombre</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="invalid-feedback" id="nombreError">Por favor ingrese su nombre.</div>
+        </div>
+        
+        <div class="mb-3 position-relative">
+            <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" required>
+            </div>
+            <div class="invalid-feedback" id="apellidoPaternoError">Por favor ingrese su apellido paterno.</div>
+        </div>
+        
+        <div class="mb-3 position-relative">
+            <label for="apellido_materno" class="form-label">Apellido Materno</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno">
+            </div>
+        </div>
+        
+        <div class="mb-3 position-relative">
+            <label for="correo" class="form-label">Correo</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control" id="correo" name="correo" required>
+            </div>
+            <div class="invalid-feedback" id="correoError">Por favor ingrese un correo válido.</div>
+        </div>
+        
+        <div class="mb-3 position-relative">
+            <label for="rut" class="form-label">RUT</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                <input type="text" class="form-control" id="rut" name="rut">
+            </div>
+            <div class="invalid-feedback" id="rutError">Por favor ingrese un RUT válido.</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="codigo_naci" class="form-label">Nacionalidad</label>
+            <select class="form-select" id="codigo_naci" name="codigo_naci">
+                {% for nacionalidad in nacionalidades %}
+                    <option value="{{ nacionalidad.codigo_naci }}">{{ nacionalidad.descripcion }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#confirmModal">Guardar</button>
+    </form>
+</div>
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas crear este pasajero?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" form="formPasajero">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
